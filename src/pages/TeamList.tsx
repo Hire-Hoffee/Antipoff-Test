@@ -12,9 +12,36 @@ function TeamList() {
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState<User[]>([]);
   const { data } = useGetUsersQuery(page);
+  const [isLiked, setIsLiked] = useState<{ id: number; isLiked: boolean }[]>(
+    localStorage.getItem("isLiked") ? JSON.parse(localStorage.getItem("isLiked") as string) : []
+  );
+
+  const handleLikes = (data: User[]) => {
+    if (localStorage.getItem("isLiked")) {
+      return;
+    }
+    const isLikedArr: { id: number; isLiked: boolean }[] = [];
+    data.forEach((user) => {
+      isLikedArr.push({ id: user.id, isLiked: false });
+    });
+    localStorage.setItem("isLiked", JSON.stringify(isLikedArr));
+  };
+
+  const setLike = (id: number) => {
+    const isLikedArr = [...isLiked];
+    const index = isLikedArr.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      isLikedArr[index].isLiked = !isLikedArr[index].isLiked;
+    } else {
+      isLikedArr.push({ id, isLiked: true });
+    }
+    setIsLiked(isLikedArr);
+    localStorage.setItem("isLiked", JSON.stringify(isLikedArr));
+  };
 
   useEffect(() => {
     if (data) {
+      handleLikes(data.data);
       setUsers((prevUsers) => [...prevUsers, ...data.data]);
     }
   }, [data]);
@@ -53,6 +80,8 @@ function TeamList() {
               first_name={user.first_name}
               last_name={user.last_name}
               avatar={user.avatar}
+              setLike={setLike}
+              isLiked={isLiked.find((item) => item.id === user.id)?.isLiked}
             />
           ))}
         </div>
