@@ -1,13 +1,13 @@
 import styles from "@/styles/MemberCard.module.css";
 import heart1 from "@/assets/heart1.svg";
 
-type Props = {};
+import type { User } from "@/types";
 
-function MemberCard({}: Props) {
+function MemberCard({ avatar, first_name, last_name }: User) {
   return (
     <div className={styles.container}>
-      <img src="https://i.pravatar.cc/124" alt="avatar" />
-      <h4>Antipoff</h4>
+      <img src={avatar} alt="avatar" />
+      <h4>{first_name + " " + last_name || "UNDEFINED"}</h4>
       <button>
         <img src={heart1} alt="avatar" />
       </button>

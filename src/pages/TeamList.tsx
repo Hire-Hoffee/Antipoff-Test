@@ -3,10 +3,16 @@ import arrow from "@/assets/arrow.svg";
 import exit from "@/assets/exit.svg";
 
 import MemberCard from "@/components/MemberCard";
+import { useLazyGetUsersQuery } from "@/api/usersApi";
+import { useEffect } from "react";
 
-type Props = {};
+function TeamList() {
+  const [fetchUsers, { data }] = useLazyGetUsersQuery();
 
-function TeamList({}: Props) {
+  useEffect(() => {
+    fetchUsers(1);
+  }, [fetchUsers]);
+
   return (
     <>
       <header className={styles.header}>
@@ -24,8 +30,13 @@ function TeamList({}: Props) {
       </header>
       <main className={styles.main}>
         <div className={styles.cardsContainer}>
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-            <MemberCard key={item} />
+          {data?.data.map((user) => (
+            <MemberCard
+              key={user.id}
+              first_name={user.first_name}
+              last_name={user.last_name}
+              avatar={user.avatar}
+            />
           ))}
         </div>
         <button className={styles.showMoreBtn}>
