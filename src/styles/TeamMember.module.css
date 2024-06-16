@@ -89,6 +89,21 @@
   gap: 10px
 }
 
+.avatar {
+  display: flex;
+  flex-direction: column;
+}
+
+input::file-selector-button {
+  margin-top: 10px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1500px) {
 
   .headerContent,

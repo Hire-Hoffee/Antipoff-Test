@@ -7,9 +7,12 @@ import back from "@/assets/back.svg";
 import { useGetUserByIdQuery } from "@/api/usersApi";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { useState } from "react";
+
 function TeamMember() {
   const { id } = useParams();
   const { data } = useGetUserByIdQuery(Number(id));
+  const [file, setFile] = useState<File | null>(null);
 
   const navigate = useNavigate();
 
@@ -18,11 +21,21 @@ function TeamMember() {
     window.location.reload();
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <img src={data?.data.avatar} alt="avatar" />
+          <div className={styles.avatar}>
+            <img src={file ? URL.createObjectURL(file) : data?.data.avatar} alt="avatar" />
+            <input onChange={handleFileChange} type="file" />
+          </div>
           <div>
             <h1>{data?.data.first_name + " " + data?.data.last_name || "UNDEFINED"}</h1>
             <span>Партнер</span>
