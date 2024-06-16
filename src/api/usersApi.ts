@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { UsersResponse } from "@/types";
+import type { UsersResponse, User } from "@/types";
 
 export const usersApi = createApi({
   reducerPath: "usersApi",
@@ -8,7 +8,10 @@ export const usersApi = createApi({
     getUsers: builder.query<UsersResponse, number>({
       query: (page) => `/users?page=${page}`,
     }),
+    getUserById: builder.query<{ data: User }, number>({
+      query: (id) => `/users/${id}`,
+    }),
   }),
 });
 
-export const { useLazyGetUsersQuery } = usersApi;
+export const { useGetUsersQuery, useGetUserByIdQuery } = usersApi;

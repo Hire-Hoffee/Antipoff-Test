@@ -3,15 +3,10 @@ import arrow from "@/assets/arrow.svg";
 import exit from "@/assets/exit.svg";
 
 import MemberCard from "@/components/MemberCard";
-import { useLazyGetUsersQuery } from "@/api/usersApi";
-import { useEffect } from "react";
+import { useGetUsersQuery } from "@/api/usersApi";
 
 function TeamList() {
-  const [fetchUsers, { data }] = useLazyGetUsersQuery();
-
-  useEffect(() => {
-    fetchUsers(1);
-  }, [fetchUsers]);
+  const { data } = useGetUsersQuery(1);
 
   return (
     <>
@@ -33,6 +28,7 @@ function TeamList() {
           {data?.data.map((user) => (
             <MemberCard
               key={user.id}
+              id={user.id}
               first_name={user.first_name}
               last_name={user.last_name}
               avatar={user.avatar}

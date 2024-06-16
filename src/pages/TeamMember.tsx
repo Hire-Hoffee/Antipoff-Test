@@ -4,16 +4,20 @@ import phone from "@/assets/phone.svg";
 import email from "@/assets/email.svg";
 import back from "@/assets/back.svg";
 
-type Props = {};
+import { useGetUserByIdQuery } from "@/api/usersApi";
+import { useParams } from "react-router-dom";
 
-function TeamMember({}: Props) {
+function TeamMember() {
+  const { id } = useParams();
+  const { data } = useGetUserByIdQuery(Number(id));
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <img src="https://i.pravatar.cc/124" alt="avatar" />
+          <img src={data?.data.avatar} alt="avatar" />
           <div>
-            <h1>Antipoff</h1>
+            <h1>{data?.data.first_name + " " + data?.data.last_name || "UNDEFINED"}</h1>
             <span>Партнер</span>
           </div>
         </div>
@@ -29,11 +33,15 @@ function TeamMember({}: Props) {
       <main className={styles.main}>
         <div className={styles.infoContainer}>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium consequatur omnis
-            sunt dolorum doloremque, aliquid ad eum ex at perspiciatis sed numquam aut deserunt
-            pariatur ut laudantium enim libero aperiam culpa. Minus nostrum in laboriosam delectus
-            aut magnam, itaque, quidem ratione iusto, illo necessitatibus consectetur. Quo dicta
-            quisquam id cum!
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis hic dolorum
+            accusamus temporibus quisquam neque eaque nemo enim qui repellat iste odio recusandae
+            eligendi reiciendis culpa, expedita saepe ducimus praesentium quasi cum autem cupiditate
+            nihil laboriosam. Autem fugit quos, totam rem dicta nemo veniam in id explicabo repellat
+            repudiandae consequuntur, quasi dolorum tempore voluptate eaque sunt iusto officiis,
+            aspernatur adipisci eius! Placeat a quod minus deleniti dolorem id aut aperiam, cumque
+            deserunt iste vel obcaecati provident soluta perferendis. Corporis accusantium dolores
+            nisi deleniti, autem repellat! Fuga, debitis tempora amet doloremque quo doloribus
+            voluptas delectus beatae quod blanditiis, inventore error necessitatibus?
           </p>
           <div className={styles.contactsContainer}>
             <div>
@@ -42,7 +50,7 @@ function TeamMember({}: Props) {
             </div>
             <div>
               <img src={email} alt="email" />
-              <span>sykfafkar@gmail.com</span>
+              <span>{data?.data.email || "UNDEFINED"}</span>
             </div>
           </div>
         </div>
