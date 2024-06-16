@@ -2,6 +2,7 @@ import styles from "@/styles/Registration.module.css";
 import React from "react";
 import { useState } from "react";
 import { useLoginUserMutation } from "@/api/usersApi";
+import { useNavigate } from "react-router-dom";
 import Joi from "joi";
 
 function Login() {
@@ -9,6 +10,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const navigate = useNavigate();
 
   const schema = Joi.object({
     email: Joi.string()
@@ -24,7 +27,7 @@ function Login() {
     }),
   });
 
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     const formData = { email, password };
@@ -39,7 +42,12 @@ function Login() {
       return;
     }
 
-    loginUser({ email, password });
+    const result = await loginUser({ email, password });
+
+    if (result.data) {
+      localStorage.setItem("token", result.data.token);
+      navigate("/team");
+    }
 
     setEmail("");
     setPassword("");
