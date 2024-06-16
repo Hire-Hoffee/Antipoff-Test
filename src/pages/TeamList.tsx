@@ -1,4 +1,5 @@
 import styles from "@/styles/TeamList.module.css";
+import arrow from "@/assets/arrow.svg";
 
 import MemberCard from "@/components/MemberCard";
 
@@ -17,10 +18,16 @@ function TeamList({}: Props) {
         </div>
         <button className={styles.exit_btn}>Выход</button>
       </header>
-      <main>
-        {[1, 2, 3, 4, 5, 6, 7, 9].map((item) => (
-          <MemberCard key={item} />
-        ))}
+      <main className={styles.main}>
+        <div className={styles.cardsContainer}>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            <MemberCard key={item} />
+          ))}
+        </div>
+        <button className={styles.showMoreBtn}>
+          <span>Показать еще</span>
+          <img src={arrow} alt="icon" />
+        </button>
       </main>
     </>
   );
