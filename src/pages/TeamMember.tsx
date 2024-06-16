@@ -2,6 +2,7 @@ import styles from "@/styles/TeamMember.module.css";
 import exit from "@/assets/exit.svg";
 import phone from "@/assets/phone.svg";
 import email from "@/assets/email.svg";
+import back from "@/assets/back.svg";
 
 type Props = {};
 
@@ -21,6 +22,7 @@ function TeamMember({}: Props) {
           <img src={exit} alt="icon" />
         </button>
         <button className={styles.back_btn}>
+          <img src={back} alt="icon" />
           <span>Назад</span>
         </button>
       </header>
