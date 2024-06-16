@@ -59,3 +59,27 @@
   color: #fff;
   cursor: pointer;
 }
+
+.infoContainer {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 130px;
+  margin-top: 50px;
+}
+
+.infoContainer p {
+  max-width: 630px;
+}
+
+.contactsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contactsContainer div {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
