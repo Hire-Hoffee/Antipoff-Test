@@ -1,5 +1,6 @@
-import React from "react";
 import styles from "@/styles/TeamList.module.css";
+
+import MemberCard from "@/components/MemberCard";
 
 type Props = {};
 
@@ -16,7 +17,11 @@ function TeamList({}: Props) {
         </div>
         <button className={styles.exit_btn}>Выход</button>
       </header>
-      <main>main</main>
+      <main>
+        {[1, 2, 3, 4, 5, 6, 7, 9].map((item) => (
+          <MemberCard key={item} />
+        ))}
+      </main>
     </>
   );
 }
