@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 
 function App() {
   const navigate = useNavigate();
@@ -20,11 +20,7 @@ function App() {
     }
   }, [navigate, location.pathname]);
 
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <>{localStorage.getItem("token") ? <Outlet /> : <NavLink to="/login" />}</>;
 }
 
 export default App;

@@ -18,15 +18,15 @@ const router = createBrowserRouter([
         path: "member/:id",
         element: <TeamMember />,
       },
-      {
-        path: "registration",
-        element: <Registration />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
     ],
+  },
+  {
+    path: "registration",
+    element: <Registration />,
+  },
+  {
+    path: "login",
+    element: <Login />,
   },
 ]);
 
