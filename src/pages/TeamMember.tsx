@@ -5,11 +5,13 @@ import email from "@/assets/email.svg";
 import back from "@/assets/back.svg";
 
 import { useGetUserByIdQuery } from "@/api/usersApi";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function TeamMember() {
   const { id } = useParams();
   const { data } = useGetUserByIdQuery(Number(id));
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -25,7 +27,7 @@ function TeamMember() {
           <span>Выход</span>
           <img src={exit} alt="icon" />
         </button>
-        <button className={styles.back_btn}>
+        <button className={styles.back_btn} onClick={() => navigate(-1)}>
           <img src={back} alt="icon" />
           <span>Назад</span>
         </button>

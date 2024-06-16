@@ -27,6 +27,7 @@ function TeamList() {
         <div className={styles.cardsContainer}>
           {data?.data.map((user) => (
             <MemberCard
+              email={user.email}
               key={user.id}
               id={user.id}
               first_name={user.first_name}
