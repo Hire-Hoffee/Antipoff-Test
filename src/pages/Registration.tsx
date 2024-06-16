@@ -58,9 +58,7 @@ function Registration() {
 
   return (
     <div className={styles.container}>
-      {result.isError && (
-        <p className={styles.error_reg}>{result.error.data.error || "Произошла ошибка"}</p>
-      )}
+      {result.isError && <p className={styles.error_reg}>Произошла ошибка</p>}
       <form className={styles.modal}>
         <h1>Регистрация</h1>
 
