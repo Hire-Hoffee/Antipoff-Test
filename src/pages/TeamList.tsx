@@ -4,9 +4,24 @@ import exit from "@/assets/exit.svg";
 
 import MemberCard from "@/components/MemberCard";
 import { useGetUsersQuery } from "@/api/usersApi";
+import { useState, useEffect } from "react";
+
+import type { User } from "@/types";
 
 function TeamList() {
-  const { data } = useGetUsersQuery(1);
+  const [page, setPage] = useState(1);
+  const [users, setUsers] = useState<User[]>([]);
+  const { data } = useGetUsersQuery(page);
+
+  useEffect(() => {
+    if (data) {
+      setUsers((prevUsers) => [...prevUsers, ...data.data]);
+    }
+  }, [data]);
+
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
 
   const handleExit = () => {
     localStorage.removeItem("token");
@@ -30,7 +45,7 @@ function TeamList() {
       </header>
       <main className={styles.main}>
         <div className={styles.cardsContainer}>
-          {data?.data.map((user) => (
+          {users.map((user) => (
             <MemberCard
               email={user.email}
               key={user.id}
@@ -41,7 +56,7 @@ function TeamList() {
             />
           ))}
         </div>
-        <button className={styles.showMoreBtn}>
+        <button onClick={handleNextPage} className={styles.showMoreBtn}>
           <span>Показать еще</span>
           <img src={arrow} alt="icon" />
         </button>
