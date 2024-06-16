@@ -2,7 +2,7 @@ import styles from "@/styles/Registration.module.css";
 import React from "react";
 import { useState } from "react";
 import { useLoginUserMutation } from "@/api/usersApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import Joi from "joi";
 
 function Login() {
@@ -58,7 +58,6 @@ function Login() {
       {result.isError && <p className={styles.error_reg}>Произошла ошибка</p>}
       <form className={styles.modal}>
         <h1>Вход</h1>
-
         <div className={styles.form_group}>
           <label htmlFor="email">Электронная почта</label>
           <input
@@ -72,7 +71,6 @@ function Login() {
           />
           {errors.email && <p className={styles.error}>{errors.email}</p>}
         </div>
-
         <div className={styles.form_group}>
           <label htmlFor="password">Пароль</label>
           <input
@@ -86,10 +84,10 @@ function Login() {
           />
           {errors.password && <p className={styles.error}>{errors.password}</p>}
         </div>
-
         <button type="submit" onClick={handleSubmit}>
           Войти
         </button>
+        <NavLink to="/registration">Регистрация</NavLink>
       </form>
     </div>
   );

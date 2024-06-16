@@ -8,6 +8,11 @@ import { useGetUsersQuery } from "@/api/usersApi";
 function TeamList() {
   const { data } = useGetUsersQuery(1);
 
+  const handleExit = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   return (
     <>
       <header className={styles.header}>
@@ -18,7 +23,7 @@ function TeamList() {
             плечи, и умеющие находить выход из любых, даже самых сложных ситуаций.
           </p>
         </div>
-        <button className={styles.exit_btn}>
+        <button onClick={handleExit} className={styles.exit_btn}>
           <span>Выход</span>
           <img src={exit} alt="icon" />
         </button>

@@ -1,7 +1,7 @@
 import styles from "@/styles/Registration.module.css";
 import { useState } from "react";
 import { useRegisterUserMutation } from "@/api/usersApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import Joi from "joi";
 
 function Registration() {
@@ -107,6 +107,7 @@ function Registration() {
         <button type="submit" onClick={handleSubmit}>
           Зарегистрироваться
         </button>
+        <NavLink to="/login">Вход</NavLink>
       </form>
     </div>
   );

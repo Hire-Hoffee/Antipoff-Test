@@ -13,6 +13,11 @@ function TeamMember() {
 
   const navigate = useNavigate();
 
+  const handleExit = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   return (
     <>
       <header className={styles.header}>
@@ -23,7 +28,7 @@ function TeamMember() {
             <span>Партнер</span>
           </div>
         </div>
-        <button className={styles.exit_btn}>
+        <button onClick={handleExit} className={styles.exit_btn}>
           <span>Выход</span>
           <img src={exit} alt="icon" />
         </button>
