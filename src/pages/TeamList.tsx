@@ -1,5 +1,6 @@
 import styles from "@/styles/TeamList.module.css";
 import arrow from "@/assets/arrow.svg";
+import exit from "@/assets/exit.svg";
 
 import MemberCard from "@/components/MemberCard";
 
@@ -16,7 +17,10 @@ function TeamList({}: Props) {
             плечи, и умеющие находить выход из любых, даже самых сложных ситуаций.
           </p>
         </div>
-        <button className={styles.exit_btn}>Выход</button>
+        <button className={styles.exit_btn}>
+          <span>Выход</span>
+          <img src={exit} alt="icon" />
+        </button>
       </header>
       <main className={styles.main}>
         <div className={styles.cardsContainer}>

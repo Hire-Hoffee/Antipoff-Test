@@ -12,6 +12,7 @@
   color: #fff;
   text-align: center;
   width: 850px;
+  margin: 15px;
 }
 
 .headerContent h1 {
@@ -36,6 +37,9 @@
   cursor: pointer;
 }
 
+.exit_btn img {
+  display: none;
+}
 
 .main {
   display: flex;
@@ -66,4 +70,41 @@
 
 .showMoreBtn span {
   margin-right: 8px;
+}
+
+@media screen and (max-width: 1275px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 975px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .exit_btn {
+    border: none;
+    top: 12px;
+    right: 16px;
+  }
+
+  .exit_btn span {
+    display: none;
+  }
+
+  .exit_btn img {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .cardsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .headerContent h1 {
+    margin-bottom: 18px;
+    margin-top: 18px;
+  }
 }
