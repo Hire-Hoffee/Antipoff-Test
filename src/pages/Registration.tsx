@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRegisterUserMutation } from "@/api/usersApi";
 import { useNavigate, NavLink } from "react-router-dom";
 import Joi from "joi";
+import eyeoff from "@/assets/eyeoff.svg";
+import eyeon from "@/assets/eyeon.svg";
 
 function Registration() {
   const [registerUser, result] = useRegisterUserMutation();
@@ -10,6 +12,7 @@ function Registration() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -81,11 +84,16 @@ function Registration() {
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             placeholder="********"
             required
+          />
+          <img
+            onClick={() => setShowPassword(!showPassword)}
+            src={showPassword ? eyeon : eyeoff}
+            alt="showPass"
           />
           {errors.password && <p className={styles.error}>{errors.password}</p>}
         </div>
@@ -95,11 +103,16 @@ function Registration() {
           <input
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="confirmPassword"
             name="confirmPassword"
             placeholder="********"
             required
+          />
+          <img
+            onClick={() => setShowPassword(!showPassword)}
+            src={showPassword ? eyeon : eyeoff}
+            alt="showPass"
           />
           {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
         </div>

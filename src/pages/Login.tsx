@@ -4,12 +4,15 @@ import { useState } from "react";
 import { useLoginUserMutation } from "@/api/usersApi";
 import { useNavigate, NavLink } from "react-router-dom";
 import Joi from "joi";
+import eyeoff from "@/assets/eyeoff.svg";
+import eyeon from "@/assets/eyeon.svg";
 
 function Login() {
   const [loginUser, result] = useLoginUserMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -76,11 +79,16 @@ function Login() {
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             placeholder="********"
             required
+          />
+          <img
+            onClick={() => setShowPassword(!showPassword)}
+            src={showPassword ? eyeon : eyeoff}
+            alt="showPass"
           />
           {errors.password && <p className={styles.error}>{errors.password}</p>}
         </div>

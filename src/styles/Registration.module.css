@@ -23,6 +23,7 @@
 }
 
 .form_group {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -36,6 +37,13 @@
   padding: 0 16px;
   background-color: #F8F8F8;
   font-size: 18px;
+}
+
+.form_group img {
+  position: absolute;
+  right: 16px;
+  top: 45px;
+  cursor: pointer;
 }
 
 .modal button {
